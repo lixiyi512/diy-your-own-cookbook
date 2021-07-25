@@ -34,12 +34,22 @@ export class AuthComponent implements OnDestroy {
     this.isLoginMode = !this.isLoginMode;
   }
 
+  signUpMode() {
+    this.isLoginMode = false;
+  }
+
   onSubmit(form: NgForm) {
     if (!form.valid) {
       return;
     }
     const email = form.value.email;
     const password = form.value.password;
+    const rePassword = form.value.rePassword;
+
+    if (!this.isLoginMode && rePassword !== password) {
+      this.error = "Your passwords don't match!";
+      return;
+    }
 
     let authObs: Observable<AuthResponseData>;
 
