@@ -1,0 +1,65 @@
+.find-button {
+  margin-bottom: 10px;
+}
+
+.store-wrapper {
+  width: 1000px;
+  display: flex;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+#map-container {
+  height: 600px;
+  width: 600px;
+}
+
+.store-info {
+  height: 500px;
+  width: 250px;
+}
+
+.image {
+  height: 250px;
+  max-width: 250px;
+}
+
+h4 {
+  margin-bottom: 2px;
+}
+
+.open-now {
+  color: red;
+  font-style: italic;
+  margin: 0;
+}
+
+.isOpen {
+  color: green;
+}
+
+.store-details {
+  margin-top: 10px;
+}
+
+.store-detail-item {
+  margin: 10px 0 0 0;
+}
+
+.travel-drive-icon {
+  width: 25px;
+}
+
+.travel-walk-icon {
+  width: 22px;
+}
+
+.tel-website {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 160px;
+}
+
+.open-day {
+  margin: 2px 0;
+}

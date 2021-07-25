@@ -3,3 +3,31 @@
     background-color: #1279be;
     color: white !important;
 }
+
+/* --- Google Maps Override Start --- */
+
+button[title='Close'].gm-ui-hover-effect {
+    /* Disable close button in infoWindow */
+    display: none !important;
+  }
+  
+  .info-title {
+    margin: 2px 0;
+    font-size: 15px;
+  }
+  
+  .info-status {
+    margin: 0 2px 0 0;
+    font-size: 13px;
+    font-style: italic;
+  }
+  
+  .info-open {
+    color: green;
+  }
+  
+  .info-close {
+    color: red;
+  }
+  
+  /* --- Google Maps Override End --- */
