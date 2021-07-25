@@ -1,19 +1,19 @@
 <div class="row">
-  <div class="col-xs-12">
-    <img
-      [src]="recipe.imagePath"
-      alt="{{ recipe.name }}"
-      class="img-responsive"
-      style="max-height: 300px;">
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
+  <div class="col-md-12">
     <h1>{{ recipe.name }}</h1>
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-md-12 my-3">
+    <img
+      [src]="recipe.imagePath"
+      alt="{{ recipe.name }}"
+      class="img-fluid img-thumbnail"
+      style="max-height: 300px;">
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
     <div
       class="btn-group"
       appDropdown>
@@ -23,20 +23,20 @@
         Manage Recipe <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li><a (click)="onAddToShoppingList()" style="cursor: pointer;">To Shopping List</a></li>
-        <li><a style="cursor: pointer;" (click)="onEditRecipe()">Edit Recipe</a></li>
-        <li><a style="cursor: pointer;" (click)="onDeleteRecipe()">Delete Recipe</a></li>
+        <li class="dropdown-item"><a (click)="onAddToShoppingList()" style="cursor: pointer;">To Shopping List</a></li>
+        <li class="dropdown-item"><a style="cursor: pointer;" (click)="onEditRecipe()">Edit Recipe</a></li>
+        <li class="dropdown-item"><a style="cursor: pointer;" (click)="onDeleteRecipe()">Delete Recipe</a></li>
       </ul>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
-    {{ recipe.description }}
+  <div class="col-md-12 line-break">
+    {{ recipe.instruction }}
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-md-12">
     <ul class="list-group">
       <li
         class="list-group-item"

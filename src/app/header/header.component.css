@@ -1,0 +1,3 @@
+.dropdown.nav-item.open .dropdown-menu{
+    display: block;
+}
