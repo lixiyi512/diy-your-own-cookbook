@@ -1,1 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+.dropdown-item.active, .dropdown-item:active {
+    background-color: #1279be;
+    color: white !important;
+}

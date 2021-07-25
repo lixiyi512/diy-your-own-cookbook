@@ -73,10 +73,9 @@
                 formControlName="amount">
             </div>
             <div class="col-md-2">
-              <button
-                type="button"
-                class="btn btn-danger"
-                (click)="onDeleteIngredient(i)">X</button>
+              <button type="button" class="close" aria-label="Close" (click)="onDeleteIngredient(i)">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
           </div>
           <hr>
