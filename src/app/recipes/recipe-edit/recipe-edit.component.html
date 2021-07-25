@@ -53,6 +53,12 @@
           </div>
         </div>
       </div>
+      <div class="row" *ngIf="!!ingredientsControls">
+        <div class="col-md-6">Name</div>
+        <div class="col-md-2">Amount</div>
+        <div class="col-md-2">Unit</div>
+        <div class="col-md-2"></div> 
+      </div>
       <div class="row">
         <div class="col-md-12" formArrayName="ingredients">
           <div
@@ -60,7 +66,7 @@
             *ngFor="let ingredientCtrl of ingredientsControls; let i = index"
             [formGroupName]="i"
             style="margin-top: 10px;">
-            <div class="col-md-8">
+            <div class="col-md-6">
               <input
                 type="text"
                 class="form-control"
@@ -71,6 +77,12 @@
                 type="number"
                 class="form-control"
                 formControlName="amount">
+            </div>
+            <div class="col-md-2">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="unit">
             </div>
             <div class="col-md-2">
               <button type="button" class="close" aria-label="Close" (click)="onDeleteIngredient(i)">
