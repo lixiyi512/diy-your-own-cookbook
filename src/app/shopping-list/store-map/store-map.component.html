@@ -1,16 +1,16 @@
-<button class="btn btn-success find-button" (click)="clickUpdate()">Find nearby grocery store</button>
+<button class="btn btn-success find-button mb-3" (click)="clickUpdate()">Find nearby grocery store</button>
 
-<div class="store-wrapper">
-  <div id="map-container" #mapContainer>
+<div class="row">
+  <div id="map-container" #mapContainer class="col-md-6">
     <div *ngIf="loading" style="text-align: center;">
       <app-loading-spinner></app-loading-spinner>
     </div>
     <p class="location-blocked" *ngIf="locationBlocked">You need to allow location access for this feature.</p>
   </div>
 
-  <div class="store-info" *ngIf="showDetail">
-    <img class="image" [src]="selectedStoreImageUrl" *ngIf="selectedStore" />
-    <h4>{{ selectedStore?.place.name }}</h4>
+  <div class="store-info text-center col-md-6" *ngIf="showDetail">
+    <img class="img-fluid w-75" [src]="selectedStoreImageUrl" *ngIf="selectedStore" />
+    <h4 class="mb-2">{{ selectedStore?.place.name }}</h4>
     <p class="open-now" [ngClass]="{ isOpen: storeStatus === 'Open now' }">{{ storeStatus }}</p>
 
     <div *ngIf="loadingDetails" style="text-align: center;">
