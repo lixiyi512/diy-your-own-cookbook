@@ -97,9 +97,10 @@
             [disabled]="!authForm.valid"
           >
             Sign Up
-          </button>
+          </button><span class="text-danger ml-3">{{ error }}</span>
+          <p class="mt-3">Already have an account? <a class="text-primary btn p-0" role="button" (click)="signInMode()">Sign In</a></p>
         </div>  
-        <p class="text-danger">{{ error }}</p>
+        
       </div>
     </form>
   </div>

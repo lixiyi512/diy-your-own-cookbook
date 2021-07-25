@@ -105,8 +105,8 @@ export class StoreMapComponent {
 
   searchGroceryStores() {
     this.seachedBasedOnLocation = this.currentLocation;
-    // Search for stores within 1km
-    this.storeService.searchStores(this.currentLocation, '1000').subscribe((response) => {
+    // Search for stores within 1.5km
+    this.storeService.searchStores(this.currentLocation, '1500').subscribe((response) => {
       this.loading = false;
       for (let i = 0; i < response.length; i++) {
         const place = response[i];

@@ -38,6 +38,10 @@ export class AuthComponent implements OnDestroy {
     this.isLoginMode = false;
   }
 
+  signInMode() {
+    this.isLoginMode = true;
+  }
+
   onSubmit(form: NgForm) {
     if (!form.valid) {
       return;
