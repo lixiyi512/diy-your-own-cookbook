@@ -5,3 +5,12 @@
 .btn-group.open .dropdown-menu {
     display: block;
 }
+
+.btn-style {
+    background-color: #3598dc;
+    color: white;
+}
+
+.btn-style:hover {
+    background-color: #1279be;
+}
