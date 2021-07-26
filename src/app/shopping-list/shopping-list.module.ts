@@ -6,9 +6,14 @@ import { ShoppingListComponent } from './shopping-list.component';
 import { ShoppingEditComponent } from './shopping-edit/shopping-edit.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuthGuard } from '../auth/auth.guard';
+import { StoreMapComponent } from './store-map/store-map.component';
 
 @NgModule({
-  declarations: [ShoppingListComponent, ShoppingEditComponent],
+  declarations: [
+    ShoppingListComponent,
+    ShoppingEditComponent,
+    StoreMapComponent
+  ],
   imports: [
     FormsModule,
     RouterModule.forChild([

@@ -1,0 +1,56 @@
+<button class="btn btn-success find-button mb-3" (click)="clickUpdate()">Find nearby grocery store</button>
+
+<div class="row">
+  <div id="map-container" #mapContainer class="col-md-6">
+    <div *ngIf="loading" style="text-align: center;">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <p class="location-blocked" *ngIf="locationBlocked">You need to allow location access for this feature.</p>
+  </div>
+
+  <div class="store-info text-center col-md-6" *ngIf="showDetail">
+    <img class="img-fluid w-75" [src]="selectedStoreImageUrl" *ngIf="selectedStore" />
+    <h4 class="mb-2">{{ selectedStore?.place.name }}</h4>
+    <p class="open-now" [ngClass]="{ isOpen: storeStatus === 'Open now' }">{{ storeStatus }}</p>
+
+    <div *ngIf="loadingDetails" style="text-align: center;">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <div class="store-details" *ngIf="selectedStoreDetails">
+      <p class="store-detail-item travel-time">
+        <span *ngIf="drivingTime">
+          <img class="travel-drive-icon" src="../../../assets/icons/drive.png" />
+          {{ drivingTime }}
+        </span>
+        <span *ngIf="walkingTime">
+          <img class="travel-walk-icon" src="../../../assets/icons/walk.png" />
+          {{ walkingTime }}
+        </span>
+      </p>
+      <a
+        class="store-detail-item"
+        [href]="storeService.getGoogleMapsLink(selectedStore?.place['place_id'])"
+        target="_blank"
+      >
+        View on Google Maps
+      </a>
+      <p class="store-detail-item address">{{ selectedStoreDetails['formatted_address'] }}</p>
+      <div class="store-detail-item tel-website">
+        <span class="tel" *ngIf="selectedStoreDetails['formatted_phone_number']">
+          {{ selectedStoreDetails['formatted_phone_number'] }}
+        </span>
+        <a [href]="selectedStoreDetails.website" target="_blank">Website</a>
+      </div>
+      <div
+        class="store-detail-item open-hours"
+        *ngIf="selectedStoreDetails['opening_hours'] && selectedStoreDetails['opening_hours']['weekday_text']"
+      >
+        <p
+          class="open-day"
+          *ngFor="let day of selectedStoreDetails['opening_hours']['weekday_text']">
+          {{ day }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

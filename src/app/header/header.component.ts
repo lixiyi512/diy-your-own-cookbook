@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { DataStorageService } from '../shared/data-storage.service';
+import { DataStorageService } from '../services/data-storage.service';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../auth/user.model';
 
@@ -25,8 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userSub = this.authService.user.subscribe(user => {
       this.isAuthenticated = !!user;
       if (this.isAuthenticated) {
-        this.user = this.authService.getUserInfo();
-        const email = this.user.email;
+        const email = user.email;
         this.username = email.substr(0, email.indexOf('@'));
       }
       console.log(!user);

@@ -1,0 +1,46 @@
+#map-container {
+  height: 600px;
+  width: 600px;
+}
+
+.store-info .img-fluid {
+  height: 250px;
+  max-width: 250px;
+}
+
+.open-now {
+  color: #e00c50;
+  font-style: italic;
+  margin: 0;
+}
+
+.isOpen {
+  color: #5cb85c;
+}
+
+.store-details {
+  margin-top: 10px;
+}
+
+.store-detail-item {
+  margin: 10px 0 0 0;
+}
+
+
+.travel-drive-icon {
+  width: 25px;
+}
+
+.travel-walk-icon {
+  width: 22px;
+}
+
+.tel-website {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 185px;
+}
+
+.open-day {
+  margin: 2px 0;
+}

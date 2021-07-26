@@ -4,21 +4,26 @@ import { map, tap, take, exhaustMap } from 'rxjs/operators';
 
 import { Recipe } from '../recipes/recipe.model';
 import { RecipeService } from '../recipes/recipe.service';
-import { AuthService } from '../auth/auth.service';
+
+interface UserData {
+  email: string;
+  id: string;
+  recipes: Recipe[];
+}
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
   constructor(
     private http: HttpClient,
-    private recipeService: RecipeService,
-    private authService: AuthService
+    private recipeService: RecipeService
   ) {}
 
   storeRecipes() {
+    const { email, id } = JSON.parse(localStorage.getItem('userData'));
     const recipes = this.recipeService.getRecipes();
     this.http
       .put(
-        'https://dyi-cookbook-default-rtdb.firebaseio.com/recipes.json',
+        `https://dyi-cookbook-default-rtdb.firebaseio.com/users/${id}/recipes.json`,
         recipes
       )
       .subscribe(response => {
@@ -27,12 +32,16 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
+    const { id } = JSON.parse(localStorage.getItem('userData'));
     return this.http
       .get<Recipe[]>(
-        'https://dyi-cookbook-default-rtdb.firebaseio.com/recipes.json'
+        `https://dyi-cookbook-default-rtdb.firebaseio.com/users/${id}/recipes.json`
       )
       .pipe(
         map(recipes => {
+          if (!recipes) {
+            return [];
+          }
           return recipes.map(recipe => {
             return {
               ...recipe,
