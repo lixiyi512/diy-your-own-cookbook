@@ -23,7 +23,10 @@ export class AuthService {
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+    ) {}
 
   signup(email: string, password: string) {
     return this.http
@@ -148,5 +151,18 @@ export class AuthService {
         break;
     }
     return throwError(errorMessage);
+  }
+  
+  public initUser(email: string, id: string) {
+    const recipes = [];
+    const userData = { email, recipes };
+    this.http
+      .put(
+        `https://dyi-cookbook-default-rtdb.firebaseio.com/users/${id}.json`,
+        userData
+      )
+      .subscribe(response => {
+        console.log(response);
+      });
   }
 }

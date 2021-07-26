@@ -68,6 +68,9 @@ export class AuthComponent implements OnDestroy {
     authObs.subscribe(
       resData => {
         console.log(resData);
+        if (!this.isLoginMode) {
+          this.authService.initUser(resData.email, resData.localId);
+        }
         this.isLoading = false;
         this.router.navigate(['/recipes']);
       },
