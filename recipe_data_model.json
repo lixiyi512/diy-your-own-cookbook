@@ -1,0 +1,56 @@
+{
+  "recipe": {
+    "label": "string",
+    "image": "string",
+    "url": "string",
+
+    "ingredientLines": [
+      "string"
+    ],
+    "ingredients": [
+      {
+        "text": "string",
+        "quantity": 0,
+        "measure": "string",
+        "food": "string",
+      }
+    ],
+    "cuisineType": [
+      "American",
+      "Asian",
+      "British",
+      "Caribbean",
+      "Central Europe",
+      "Chinese",
+      "Easter Europe",
+      "French",
+      "Indian",
+      "Italian",
+      "Japanese",
+      "Kosher",
+      "Mediterranean",
+      "Mexican",
+      "Nordic",
+      "South American",
+      "South East Asian",
+      "Others"
+    ],
+    "mealType": [
+      "Breakfast",
+      "Lunch",
+      "Dinner",
+      "Snack",
+      "Teatime"
+    ],
+  },
+  "_links": {
+    "self": {
+      "href": "string",
+      "title": "string"
+    },
+    "next": {
+      "href": "string",
+      "title": "string"
+    }
+  }
+}
