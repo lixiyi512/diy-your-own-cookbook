@@ -20,7 +20,8 @@ export class DataStorageService {
 
   storeRecipes() {
     const { email, id } = JSON.parse(localStorage.getItem('userData'));
-    const recipes = this.recipeService.getRecipes();
+    // Don't pass recipeId to back end
+    const recipes = this.recipeService.getRecipes().map(({ recipeId, isFromEdamam, ...props}) => props);
     this.http
       .put(
         `https://dyi-cookbook-default-rtdb.firebaseio.com/users/${id}/recipes.json`,
@@ -42,9 +43,12 @@ export class DataStorageService {
           if (!recipes) {
             return [];
           }
-          return recipes.map(recipe => {
+          // recipeId from front end only
+          return recipes.map((recipe, recipeId) => {
             return {
               ...recipe,
+              recipeId,
+              isFromEdamam: false,
               ingredients: recipe.ingredients ? recipe.ingredients : []
             };
           });

@@ -2,3 +2,21 @@ input.ng-invalid.ng-touched,
 textarea.ng-invalid.ng-touched {
   border: 1px solid red;
 }
+
+.upload-file {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.upload-button {
+  margin-left: 5px;
+}
+
+.img-fluid {
+  cursor: pointer;
+}
+
+.hover {
+  opacity: 0.3;
+}

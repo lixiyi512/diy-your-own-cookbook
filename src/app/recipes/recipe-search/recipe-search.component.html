@@ -1,0 +1,27 @@
+<div class="search-wrapper">
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="searchInput"
+      (keyup)="onKeyUp($event)"
+    />
+    <button
+      class="btn btn-outline-success"
+      type="button"
+      (click)="search()"
+    >Search</button>
+  </div>
+
+  <div class="result-list">
+    <div class="result-item" *ngFor="let res of searchResults">
+      <div class="result-title">
+        <h3 class="result-name" (click)="clickTitle(res.recipe)">
+          {{ res.recipe.name }}
+        </h3>
+        <span class="result-star" *ngIf="!res.recipe.isFromEdamam">&#9733;</span>
+      </div>
+      <img class="result-img" [src]="res.recipe.imagePath" />
+    </div>
+  </div>
+</div>

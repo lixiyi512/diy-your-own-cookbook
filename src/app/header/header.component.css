@@ -1,3 +1,7 @@
 .dropdown.nav-item.open .dropdown-menu{
     display: block;
 }
+
+.navbar {
+  margin-bottom: 2rem !important;
+}

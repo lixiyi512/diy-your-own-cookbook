@@ -14,6 +14,7 @@ export class RecipeEditComponent implements OnInit {
   id: number;
   editMode = false;
   recipeForm: FormGroup;
+  hovering = false;
 
   get ingredientsControls() {
     return (this.recipeForm.get('ingredients') as FormArray).controls;
@@ -69,6 +70,12 @@ export class RecipeEditComponent implements OnInit {
   onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
+
+  onHover(h) {
+    this.hovering = h;
+  }
+
+  uploadFromLocal() {}
 
   private initForm() {
     let recipeName = '';

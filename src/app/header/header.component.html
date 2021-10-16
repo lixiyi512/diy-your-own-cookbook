@@ -15,6 +15,9 @@
         <li routerLinkActive="active" *ngIf="isAuthenticated" class="nav-item">
           <a routerLink="/shopping-list" class="nav-link">Shopping List</a>
         </li>
+        <li routerLinkActive="active" *ngIf="isAuthenticated" class="nav-item">
+          <a routerLink="/gallery" class="nav-link">Gallery</a>
+        </li>
       </ul>
       <ul class="navbar-nav navbar-right">
         <li *ngIf="isAuthenticated" class="nav-link text-info">Welcome {{ username }}</li>
