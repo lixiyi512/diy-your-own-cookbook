@@ -1,0 +1,37 @@
+.search-wrapper {
+  margin-bottom: 20px;
+}
+
+.result-list {
+  position: absolute;
+  z-index: 10;
+  background-color: #f8f9fa;
+  width: 100%;
+  margin-left: -15px;
+  padding: 0 15px;
+  background-clip: content-box;
+}
+
+.result-item {
+  display: flex;
+  margin: 10px 0;
+}
+
+.result-title {
+  width: 30%;
+}
+
+.result-name {
+  color: #28a745;
+  cursor: pointer;
+  display: inline;
+}
+
+.result-star {
+  color: #ffcd3c;
+  font-size: x-large;
+}
+
+.result-img {
+  width: 300px;
+}

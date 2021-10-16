@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { Recipe } from './recipe.model';
+import { Recipe, RecipeAttachedTerm } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
@@ -24,12 +24,14 @@ export class RecipeService {
   //   )
   // ];
   private recipes: Recipe[] = [];
+  private recipePool: RecipeAttachedTerm[] = [];
 
   constructor(private slService: ShoppingListService) {}
 
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
     this.recipesChanged.next(this.recipes.slice());
+    this.recipePool = this.buildRecipePool(recipes);
   }
 
   getRecipes() {
@@ -47,15 +49,42 @@ export class RecipeService {
   addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
     this.recipesChanged.next(this.recipes.slice());
+    this.recipePool = this.buildRecipePool(this.recipes);
   }
 
   updateRecipe(index: number, newRecipe: Recipe) {
     this.recipes[index] = newRecipe;
     this.recipesChanged.next(this.recipes.slice());
+    this.recipePool = this.buildRecipePool(this.recipes);
   }
 
   deleteRecipe(index: number) {
     this.recipes.splice(index, 1);
     this.recipesChanged.next(this.recipes.slice());
+    this.recipePool = this.buildRecipePool(this.recipes);
+  }
+
+  buildRecipePool(recipes: Recipe[]): RecipeAttachedTerm[] {
+    return recipes.reduce((accu: RecipeAttachedTerm[], curr: Recipe) => {
+      curr.name.split(' ').forEach((term) => {
+        accu.push({
+          term,
+          recipe: curr,
+        });
+      });
+      curr.ingredients.map(i => i.name).forEach((name) => {
+        name.split(' ').forEach(term => {
+          accu.push({
+            term,
+            recipe: curr,
+          });
+        });
+      });
+      return accu;
+    }, [] as RecipeAttachedTerm[]);
+  }
+
+  getRecipePool(): RecipeAttachedTerm[] {
+    return this.recipePool;
   }
 }

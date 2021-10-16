@@ -1,25 +1,29 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import { AuthComponent } from "./auth/auth.component";
+import { AuthComponent } from './auth/auth.component';
 
 const appRoutes: Routes = [
-  { path: "", redirectTo: "/recipes", pathMatch: "full" },
+  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
   {
-    path: "recipes",
+    path: 'recipes',
     loadChildren: () =>
-      import("./recipes/recipes.module").then(m => m.RecipesModule)
+      import('./recipes/recipes.module').then(m => m.RecipesModule)
   },
   {
-    path: "shopping-list",
+    path: 'shopping-list',
     loadChildren: () =>
-      import("./shopping-list/shopping-list.module").then(
+      import('./shopping-list/shopping-list.module').then(
         m => m.ShoppingListModule
       )
   },
   {
-    path: "auth",
-    loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule)
+    path: 'gallery',
+    loadChildren: () => import('./gallery/gallery.module').then(m => m.GalleryModule)
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   }
 ];
 
