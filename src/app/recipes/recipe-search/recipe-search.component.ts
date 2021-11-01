@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { RecipeAttachedTerm, Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { EdamamService } from '../../services/edamam.service';
+import { DataStorageService } from '../../services/data-storage.service';
 
 @Component({
   selector: 'app-recipe-search',
@@ -12,11 +13,13 @@ import { EdamamService } from '../../services/edamam.service';
 export class RecipeSearchComponent {
   public searchResults: RecipeAttachedTerm[] = [];
   public searchInput: string;
+  public filters = [];
 
   constructor(
     private router: Router,
     private recipeService: RecipeService,
     private edamamService: EdamamService,
+    private dataStorageService: DataStorageService
   ) {}
 
   search() {
@@ -68,6 +71,14 @@ export class RecipeSearchComponent {
       this.router.navigateByUrl(`/recipes/${recipe.recipeId}`);
     }
   }
+
+  addToLocal(rcp: Recipe) {
+    rcp.isFromEdamam = false;
+    this.recipeService.addRecipe(rcp);
+    this.dataStorageService.storeRecipes();
+  }
+
+  buildFilters() {}
 
   private convertToRecipeAttachedTerm(r) {
     return new RecipeAttachedTerm('', r);

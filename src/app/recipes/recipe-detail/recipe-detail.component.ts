@@ -45,4 +45,13 @@ export class RecipeDetailComponent implements OnInit {
     this.router.navigate(['/recipes']);
   }
 
+  openExternal(url) {
+    window.open(url, '_blank').focus();
+  }
+
+  removeExternalLink() {
+    this.recipe.externalUrl = null;
+    this.recipeService.updateRecipe(this.id, this.recipe);
+    this.dataStorageService.storeRecipes();
+  }
 }

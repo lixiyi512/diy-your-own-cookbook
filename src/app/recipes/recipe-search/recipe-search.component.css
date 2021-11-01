@@ -32,6 +32,15 @@
   font-size: x-large;
 }
 
+.result-plus {
+  cursor: pointer;
+}
+
+.plus-icon {
+  width: 20px;
+  padding-bottom: 9px;
+}
+
 .result-img {
   width: 300px;
 }
