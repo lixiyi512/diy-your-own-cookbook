@@ -71,4 +71,5 @@ export enum Meal {
   Dinner = 'dinner',
   Snack = 'snack',
   Teatime = 'teatime',
+  Others = 'others',
 }

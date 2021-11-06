@@ -14,7 +14,9 @@
 
 .result-item {
   display: flex;
-  margin: 10px 0;
+  margin: 10px 25px 10px 10px;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .result-title {
@@ -39,6 +41,10 @@
 .plus-icon {
   width: 20px;
   padding-bottom: 9px;
+}
+
+.result-ingredients {
+  min-width: 300px;
 }
 
 .result-img {

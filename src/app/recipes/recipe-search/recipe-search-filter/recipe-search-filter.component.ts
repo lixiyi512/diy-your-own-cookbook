@@ -8,4 +8,12 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 export class RecipeSearchFilterComponent {
   @Input() filters = [];
   @Output() confirm: EventEmitter<any> = new EventEmitter<any>();
+
+  toggleMenu(filter) {
+    filter.isOpen = !filter.isOpen;
+  }
+
+  filterResults() {
+    this.confirm.emit(this.filters);
+  }
 }

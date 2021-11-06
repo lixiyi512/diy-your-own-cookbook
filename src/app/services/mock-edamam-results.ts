@@ -77,7 +77,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "american"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -165,7 +166,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "central europe"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -205,7 +207,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "american"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -257,7 +260,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "french"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -333,7 +337,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "middle eastern"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -409,7 +414,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "american"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -455,7 +461,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "american"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -607,7 +614,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "italian"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -707,7 +715,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "italian"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -783,7 +792,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "kosher"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -859,7 +869,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "french"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -917,7 +928,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "italian"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -969,7 +981,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "mediterranean"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -997,7 +1010,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "american"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -1049,7 +1063,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "american"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -1113,7 +1128,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "american"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -1165,7 +1181,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "american"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -1217,7 +1234,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "french"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true
@@ -1299,7 +1317,8 @@ export const MOCK_EDAMAM_RESULTS = [
       "italian"
     ],
     "mealType": [
-      "lunch/dinner"
+      "lunch",
+      "dinner"
     ],
     "recipeId": null,
     "isFromEdamam": true

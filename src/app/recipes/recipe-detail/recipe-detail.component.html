@@ -35,16 +35,18 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12 line-break label-wrapper-instruction">
-    <h4 class="my-4 label-instruction">Instruction</h4>
-    {{ recipe.instruction }}
-    <span
-      class="external-link"
-      *ngIf="recipe.externalUrl"
-      (click)="openExternal(recipe.externalUrl)"
-    >
-      <img class="external-icon" src="../../../assets/icons/external.png" />
-    </span>
+  <div class="col-md-12 line-break">
+    <div class="label-wrapper-instruction">
+      <h4 class="my-4 label-instruction">Instruction</h4>
+      <span
+        class="external-link"
+        *ngIf="recipe.externalUrl"
+        (click)="openExternal(recipe.externalUrl)"
+      >
+        <img class="external-icon" src="../../../assets/icons/external.png" />
+      </span>
+    </div>
+    <div>{{ recipe.instruction }}</div>
   </div>
 </div>
 <div class="row">

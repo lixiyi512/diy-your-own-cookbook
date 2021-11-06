@@ -12,6 +12,7 @@ import { DataStorageService } from '../../services/data-storage.service';
 })
 export class RecipeSearchComponent {
   public searchResults: RecipeAttachedTerm[] = [];
+  public backupResults: RecipeAttachedTerm[] = [];
   public searchInput: string;
   public filters = [];
 
@@ -30,6 +31,8 @@ export class RecipeSearchComponent {
       this.searchInEdamam(this.searchInput, results);
     }
     this.searchResults = results;
+    this.backupResults = this.searchResults;
+    this.buildFilters(results);
   }
 
   onKeyUp(e) {
@@ -58,7 +61,6 @@ export class RecipeSearchComponent {
 
   searchInEdamam(input, results) {
     this.edamamService.searchRecipeInEdamamAPI(input).subscribe((res) => {
-      console.log(res);
       results.push(...res.map(r => this.convertToRecipeAttachedTerm(r)));
     })
   }
@@ -78,7 +80,49 @@ export class RecipeSearchComponent {
     this.dataStorageService.storeRecipes();
   }
 
-  buildFilters() {}
+  buildFilters(recipes: RecipeAttachedTerm[]) {
+    if (recipes.length) {
+      const res = [
+        {
+          name: 'Cuisines',
+          isOpen: false,
+          values: {},
+        },
+        {
+          name: 'Meal Types',
+          isOpen: false,
+          values: {},
+        },
+      ];
+      recipes.forEach(({ recipe }) => {
+        recipe.cuisineType.forEach(c => this.addElementTo(c, res[0].values));
+        recipe?.mealType.forEach(m => this.addElementTo(m, res[1].values));
+      });
+      this.filters = res;
+    } else {
+      this.filters = [];
+    }
+  }
+
+  onFilterResults(filters) {
+    if (filters.every(filter => this.allPropertiesAreFalse(filter.values))) {
+      this.searchResults = this.backupResults;
+      return;
+    }
+    this.searchResults = this.backupResults.filter(({ recipe }) => {
+      return recipe.cuisineType.some(c => filters[0].values[c]) || recipe.mealType.some(m => filters[1].values[m]);
+    });
+  }
+
+  private addElementTo(key, obj) {
+    if (obj[key] === undefined) {
+      obj[key] = false;
+    }
+  }
+
+  private allPropertiesAreFalse(obj) {
+    return Object.keys(obj).every((k) => !obj[k])
+  }
 
   private convertToRecipeAttachedTerm(r) {
     return new RecipeAttachedTerm('', r);

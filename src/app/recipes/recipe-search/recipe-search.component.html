@@ -15,7 +15,9 @@
 
   <div class="result-list" *ngIf="searchResults.length">
     <app-recipe-search-filter
+      *ngIf="filters?.length"
       [filters]="filters"
+      (confirm)="onFilterResults($event)"
     ></app-recipe-search-filter>
 
     <div class="result-item" *ngFor="let res of searchResults">
@@ -29,6 +31,13 @@
             <img class="plus-icon" src="../../../assets/icons/plus.png" />
           </span>
         </ng-template>
+      </div>
+      <div class="result-ingredients">
+        <ul class="">
+          <li class="" *ngFor="let ingredient of res.recipe.ingredients">
+            {{ ingredient.name }} - {{ ingredient.amount }} {{ ingredient.unit }}
+          </li>
+        </ul>
       </div>
       <img class="result-img" [src]="res.recipe.imagePath" />
     </div>
