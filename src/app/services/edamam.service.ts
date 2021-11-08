@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Recipe } from '../recipes/recipe.model';
+import { Recipe, Meal } from '../recipes/recipe.model';
 import { RecipeService } from '../recipes/recipe.service';
 import { EDAMAM_DOMAIN } from '../shared/constants';
 import { Ingredient } from '../shared/ingredient.model';
@@ -52,7 +52,7 @@ export class EdamamService {
               ),
               recipe.url,
               recipe.cuisineType,
-              recipe.mealType,
+              this.getMeals(recipe.mealType),
               null,
               true,
             ));
@@ -60,5 +60,13 @@ export class EdamamService {
           return ret;
         })
       );
+  }
+
+  private getMeals(mealTypeFromApi): Meal[] {
+    const ret: Meal[] = [];
+    mealTypeFromApi.forEach((mealFromApi) => {
+      ret.push(...mealFromApi.split('/'));
+    });
+    return ret;
   }
 }

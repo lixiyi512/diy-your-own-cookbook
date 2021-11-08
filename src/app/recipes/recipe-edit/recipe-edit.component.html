@@ -26,8 +26,15 @@
         <div class="col-md-12">
           <div class="form-group">
             <label for="imagePath">Image URL or
-              <label for="upload-0" class="btn btn-outline-success upload-button">Choose file</label>
-              <input type="file" id="upload-0" class="upload-file" />
+              <label
+                for="upload-0"
+                [class.disabled]="isUploadingImage"
+                [class.btn-outline-success]="!isUploadingImage"
+                class="btn upload-button"
+              >Choose file</label>
+              <input type="file" accept="image/*" id="upload-0" class="upload-file"
+                     (change)="uploadImageFromLocal($event)"
+                     [disabled]="isUploadingImage" />
             </label>
             <input
               type="text"
@@ -43,10 +50,9 @@
           <img
             [src]="imagePath.value"
             class="img-fluid"
-            [class.hover]="hovering"
+            [class.hover]="!isUploadingImage && hovering"
             (mouseenter)="onHover(true)"
             (mouseleave)="onHover(false)"
-            (click)="uploadFromLocal()"
           />
         </label>
       </div>

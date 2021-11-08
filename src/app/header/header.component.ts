@@ -28,8 +28,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         const email = user.email;
         this.username = email.substr(0, email.indexOf('@'));
       }
-      console.log(!user);
-      console.log(!!user);
     });
   }
 

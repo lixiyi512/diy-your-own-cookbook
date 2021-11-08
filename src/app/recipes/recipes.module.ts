@@ -9,6 +9,7 @@ import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.compo
 import { RecipeStartComponent } from './recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
+import { RecipeSearchFilterComponent } from './recipe-search/recipe-search-filter/recipe-search-filter.component';
 import { RecipesRoutingModule } from './recipes-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
@@ -20,7 +21,8 @@ import { SharedModule } from '../shared/shared.module';
     RecipeItemComponent,
     RecipeStartComponent,
     RecipeEditComponent,
-    RecipeSearchComponent
+    RecipeSearchComponent,
+    RecipeSearchFilterComponent
   ],
   imports: [
     RouterModule,

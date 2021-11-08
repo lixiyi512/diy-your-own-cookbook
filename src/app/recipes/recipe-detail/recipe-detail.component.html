@@ -23,17 +23,30 @@
         Manage Recipe <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li class="dropdown-item"><a (click)="onAddToShoppingList()" style="cursor: pointer;">To Shopping List</a></li>
-        <li class="dropdown-item"><a style="cursor: pointer;" (click)="onEditRecipe()">Edit Recipe</a></li>
-        <li class="dropdown-item"><a style="cursor: pointer;" (click)="onDeleteRecipe()">Delete Recipe</a></li>
+        <li class="dropdown-item"><a (click)="onAddToShoppingList()">To Shopping List</a></li>
+        <li class="dropdown-item"><a (click)="onEditRecipe()">Edit Recipe</a></li>
+        <li class="dropdown-item"><a (click)="onDeleteRecipe()">Delete Recipe</a></li>
+        <li class="dropdown-item"><a (click)="onDeleteRecipe()">Delete Recipe</a></li>
+        <li class="dropdown-item" *ngIf="recipe.externalUrl">
+          <a (click)="removeExternalLink()">Remove External Link</a>
+        </li>
       </ul>
     </div>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12 line-break">
-    <h4 class="my-4">Instruction</h4>
-    {{ recipe.instruction }}
+    <div class="label-wrapper-instruction">
+      <h4 class="my-4 label-instruction">Instruction</h4>
+      <span
+        class="external-link"
+        *ngIf="recipe.externalUrl"
+        (click)="openExternal(recipe.externalUrl)"
+      >
+        <img class="external-icon" src="../../../assets/icons/external.png" />
+      </span>
+    </div>
+    <div>{{ recipe.instruction }}</div>
   </div>
 </div>
 <div class="row">

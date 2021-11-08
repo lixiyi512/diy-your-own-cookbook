@@ -14,3 +14,26 @@
 .btn-style:hover {
     background-color: #1279be;
 }
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+.label-wrapper-instruction {
+  display: flex;
+  align-items: flex-start;
+  margin: 1.5rem 0;
+}
+
+.label-instruction {
+  margin: 0 !important;
+}
+
+.external-link {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.external-icon {
+  width: 25px;
+}

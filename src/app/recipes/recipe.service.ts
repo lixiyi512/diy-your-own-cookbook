@@ -87,4 +87,12 @@ export class RecipeService {
   getRecipePool(): RecipeAttachedTerm[] {
     return this.recipePool;
   }
+
+  addMissingFields(recipes): Recipe[] {
+    return recipes.map((recipe) => ({
+      ...recipe,
+      cuisineType: recipes.cuisineType?.length ? recipes.cuisineType : ['others'],
+      mealType: recipes.mealType?.length ? recipes.mealType : ['others'],
+    }));
+  }
 }
