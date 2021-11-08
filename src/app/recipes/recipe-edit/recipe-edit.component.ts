@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { ref, uploadBytesResumable } from 'firebase/storage';
 
 import { RecipeService } from '../recipe.service';
 import { DataStorageService } from 'src/app/services/data-storage.service';
+import { FirebaseService } from '../../services/firebase.service';
+import { FIREBASE_STORAGE_ENDPOINT, FIREBASE_STORAGE_SUFFIX } from '../../shared/constants';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -15,6 +18,7 @@ export class RecipeEditComponent implements OnInit {
   editMode = false;
   recipeForm: FormGroup;
   hovering = false;
+  isUploadingImage = false;
 
   get ingredientsControls() {
     return (this.recipeForm.get('ingredients') as FormArray).controls;
@@ -24,6 +28,7 @@ export class RecipeEditComponent implements OnInit {
     private route: ActivatedRoute,
     private recipeService: RecipeService,
     private router: Router,
+    private firebaseSerivce: FirebaseService,
     private dataStorageService: DataStorageService
   ) {}
 
@@ -77,7 +82,25 @@ export class RecipeEditComponent implements OnInit {
     this.hovering = h;
   }
 
-  uploadFromLocal() {}
+  uploadImageFromLocal(event) {
+    if (!this.isUploadingImage) {
+      const file = event.target.files?.[0];
+      if (file) {
+        const imageRef = ref(this.firebaseSerivce.storage, `userImages/${file.name}`);
+        this.isUploadingImage = true;
+        const uploadTask = uploadBytesResumable(imageRef, event.target.files[0]);
+        uploadTask.on(
+          'state_changed',
+          () => {},
+          () => { this.isUploadingImage = false; },
+          () => {
+            this.isUploadingImage = false;
+            const fileUrl = FIREBASE_STORAGE_ENDPOINT + file.name + FIREBASE_STORAGE_SUFFIX;
+            this.recipeForm.get('imagePath').patchValue(fileUrl);
+          });
+      }
+    }
+  }
 
   private initForm() {
     let recipeName = '';
@@ -109,7 +132,7 @@ export class RecipeEditComponent implements OnInit {
     this.recipeForm = new FormGroup({
       name: new FormControl(recipeName, Validators.required),
       imagePath: new FormControl(recipeImagePath, Validators.required),
-      instruction: new FormControl(recipeInstruction, Validators.required),
+      instruction: new FormControl(recipeInstruction),
       ingredients: recipeIngredients
     });
   }
