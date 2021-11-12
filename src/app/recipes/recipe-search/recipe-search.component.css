@@ -14,7 +14,9 @@
 
 .result-item {
   display: flex;
-  margin: 10px 25px 10px 10px;
+  padding: 10px 25px 10px 10px;
+  margin-bottom: 10px;
+  border-bottom: 4px solid white;
   justify-content: space-between;
   align-items: flex-start;
 }
@@ -27,6 +29,10 @@
   color: #28a745;
   cursor: pointer;
   display: inline;
+}
+
+.result-name:hover {
+  color: #166d29;
 }
 
 .result-star {
@@ -48,5 +54,5 @@
 }
 
 .result-img {
-  width: 300px;
+  width: 25%;
 }
