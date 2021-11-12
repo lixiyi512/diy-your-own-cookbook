@@ -76,6 +76,7 @@ export class RecipeSearchComponent {
 
   addToLocal(rcp: Recipe) {
     rcp.isFromEdamam = false;
+    rcp.isLocalImage = false;
     this.recipeService.addRecipe(rcp);
     this.dataStorageService.storeRecipes();
   }

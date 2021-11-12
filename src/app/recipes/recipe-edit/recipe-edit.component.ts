@@ -19,6 +19,7 @@ export class RecipeEditComponent implements OnInit {
   recipeForm: FormGroup;
   hovering = false;
   isUploadingImage = false;
+  isLocalImage;
 
   get ingredientsControls() {
     return (this.recipeForm.get('ingredients') as FormArray).controls;
@@ -47,9 +48,9 @@ export class RecipeEditComponent implements OnInit {
     //   this.recipeForm.value['imagePath'],
     //   this.recipeForm.value['ingredients']);
     if (this.editMode) {
-      this.recipeService.updateRecipe(this.id, this.recipeForm.value);
+      this.recipeService.updateRecipe(this.id, this.withIsLocalImage(this.recipeForm.value));
     } else {
-      const newRecipe = this.recipeForm.value;
+      const newRecipe = this.withIsLocalImage(this.recipeForm.value);
       newRecipe.cuisineType = ['other'];
       this.recipeService.addRecipe(newRecipe);
     }
@@ -97,9 +98,15 @@ export class RecipeEditComponent implements OnInit {
             this.isUploadingImage = false;
             const fileUrl = FIREBASE_STORAGE_ENDPOINT + file.name + FIREBASE_STORAGE_SUFFIX;
             this.recipeForm.get('imagePath').patchValue(fileUrl);
+            this.isUploadingImage = true;
           });
       }
     }
+  }
+
+  private withIsLocalImage(recipe) {
+    const isLocalImage = this.isLocalImage !== undefined ? this.isLocalImage : true;
+    return Object.assign(recipe, { isLocalImage });
   }
 
   private initForm() {
@@ -113,6 +120,7 @@ export class RecipeEditComponent implements OnInit {
       recipeName = recipe.name;
       recipeImagePath = recipe.imagePath;
       recipeInstruction = recipe.instruction;
+      this.isLocalImage = recipe.isLocalImage;
       if (recipe['ingredients']) {
         for (let ingredient of recipe.ingredients) {
           recipeIngredients.push(
