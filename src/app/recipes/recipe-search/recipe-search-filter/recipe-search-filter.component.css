@@ -1,3 +1,28 @@
 .dropdown-menu.open {
   display: block;
 }
+
+.dropdown-menu {
+  padding-left: .5em;
+  padding-right: .5em;  
+}
+
+.form-check:hover {
+  background-color: #f2f8e1;  
+}
+
+.form-check-input, .form-check-label {
+  cursor: pointer;
+}
+
+.filter-container .btn-group {
+  margin-right: 1em;
+}
+
+.filter-container {
+  background: white;
+  padding-bottom: 20px;
+  display: flex;
+}
+
+
