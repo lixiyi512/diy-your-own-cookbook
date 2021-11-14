@@ -19,7 +19,7 @@
     [circular]="true"
   >
     <ng-template pTemplate="item" let-item>
-      <img [src]="item.imagePath" style="width: 100%; min-height: 640px; object-fit: contain;" />
+      <img [src]="item.imagePath" style="margin-bottom: 50px; width: 100%; min-height: 640px; object-fit: contain;" />
       <div class="image-title-wrapper">
         <h4 class="image-title" (click)="toRecipeDetail(item)">{{ item.name }}</h4>
       </div>
