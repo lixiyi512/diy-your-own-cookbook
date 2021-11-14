@@ -1,1 +1,33 @@
-<h5>Under construction...</h5>
+<!--
+<div class="card-columns">
+  <div class="card" *ngFor="let recipe of recipes">
+        <img class="card-img-top" [src]="recipe.imagePath" [alt]="recipe.name" />
+        <div class="card-body">
+          <h5 class="card-title">{{ recipe.name }}</h5>
+        </div>
+  </div>
+</div>
+-->
+
+<div class="gallery-container">
+  <p-galleria
+    [value]="recipes"
+    [responsiveOptions]="responsiveOptions"
+    [containerStyle]="{'max-width': '640px'}"
+    [numVisible]="5"
+    [autoPlay]="true"
+    [circular]="true"
+  >
+    <ng-template pTemplate="item" let-item>
+      <img [src]="item.imagePath" style="margin-bottom: 50px; width: 100%; min-height: 640px; object-fit: contain;" />
+      <div class="image-title-wrapper">
+        <h4 class="image-title" (click)="toRecipeDetail(item)">{{ item.name }}</h4>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="thumbnail" let-item>
+      <div class="p-grid p-nogutter p-justify-center">
+        <img [src]="item.imagePath" style="height: 100px" />
+      </div>
+    </ng-template>
+  </p-galleria>
+</div>

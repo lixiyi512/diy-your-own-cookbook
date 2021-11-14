@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { GalleriaModule } from 'primeng/galleria';
 import { GalleryComponent } from './gallery.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuthGuard } from '../auth/auth.guard';
@@ -12,7 +13,8 @@ import { AuthGuard } from '../auth/auth.guard';
     RouterModule.forChild([
       { path: '', component: GalleryComponent, canActivate: [AuthGuard], },
     ]),
-    SharedModule
+    SharedModule,
+    GalleriaModule
   ]
 })
 export class GalleryModule {}

@@ -10,6 +10,7 @@ export class Recipe {
   public externalUrl: string;
   public cuisineType: Cuisine[];
   public mealType: Meal[];
+  public isLocalImage: boolean;
 
   constructor(
     name: string,
@@ -21,6 +22,7 @@ export class Recipe {
     mealType?: Meal[],
     recipeId?: number,
     isFromEdamam?: boolean,
+    isLocalImage?: boolean,
   ) {
     this.isFromEdamam = isFromEdamam || false;
     this.recipeId = recipeId;
@@ -31,6 +33,7 @@ export class Recipe {
     this.externalUrl = externalUrl;
     this.cuisineType = cuisineType;
     this.mealType = mealType;
+    this.isLocalImage = isLocalImage;
   }
 }
 
