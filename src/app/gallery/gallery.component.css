@@ -1,0 +1,14 @@
+.gallery-container {
+  display: flex;
+  justify-content: center;
+}
+
+.image-title-wrapper {
+  position: absolute;
+  top: 640px;
+  cursor: pointer;
+}
+
+.image-title-wrapper:hover {
+  color: #28a745;
+}

@@ -98,7 +98,7 @@ export class RecipeEditComponent implements OnInit {
             this.isUploadingImage = false;
             const fileUrl = FIREBASE_STORAGE_ENDPOINT + file.name + FIREBASE_STORAGE_SUFFIX;
             this.recipeForm.get('imagePath').patchValue(fileUrl);
-            this.isUploadingImage = true;
+            this.isLocalImage = true;
           });
       }
     }
