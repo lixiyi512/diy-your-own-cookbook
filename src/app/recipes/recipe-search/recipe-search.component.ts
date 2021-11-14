@@ -21,7 +21,11 @@ export class RecipeSearchComponent {
     private recipeService: RecipeService,
     private edamamService: EdamamService,
     private dataStorageService: DataStorageService
-  ) {}
+  ) {
+    this.router.events.subscribe(() => {
+      this.searchResults = [];
+    })
+  }
 
   search() {
     const results = [];
@@ -77,6 +81,7 @@ export class RecipeSearchComponent {
   addToLocal(rcp: Recipe) {
     rcp.isFromEdamam = false;
     rcp.isLocalImage = false;
+    rcp.recipeId = this.recipeService.getRecipes().length;
     this.recipeService.addRecipe(rcp);
     this.dataStorageService.storeRecipes();
   }
