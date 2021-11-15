@@ -6,6 +6,7 @@ import { ref, uploadBytesResumable } from 'firebase/storage';
 import { RecipeService } from '../recipe.service';
 import { DataStorageService } from 'src/app/services/data-storage.service';
 import { FirebaseService } from '../../services/firebase.service';
+import { Cuisine, Meal } from '../recipe.model';
 import { FIREBASE_STORAGE_ENDPOINT, FIREBASE_STORAGE_SUFFIX } from '../../shared/constants';
 
 @Component({
@@ -16,10 +17,15 @@ import { FIREBASE_STORAGE_ENDPOINT, FIREBASE_STORAGE_SUFFIX } from '../../shared
 export class RecipeEditComponent implements OnInit {
   id: number;
   editMode = false;
+  recipe;
   recipeForm: FormGroup;
   hovering = false;
   isUploadingImage = false;
   isLocalImage;
+  cuisineTypes = {};
+  cuisineTypeDropdownOpen = false;
+  mealTypes = {};
+  mealTypeDropdownOpen = false;
 
   get ingredientsControls() {
     return (this.recipeForm.get('ingredients') as FormArray).controls;
@@ -38,6 +44,8 @@ export class RecipeEditComponent implements OnInit {
       this.id = +params['id'];
       this.editMode = params['id'] != null;
       this.initForm();
+      this.setCuisineTypes();
+      this.setMealTypes();
     });
   }
 
@@ -48,10 +56,10 @@ export class RecipeEditComponent implements OnInit {
     //   this.recipeForm.value['imagePath'],
     //   this.recipeForm.value['ingredients']);
     if (this.editMode) {
-      this.recipeService.updateRecipe(this.id, this.withIsLocalImage(this.recipeForm.value));
+      this.recipeService.updateRecipe(this.id, this.withAllFields(this.recipeForm.value));
     } else {
-      const newRecipe = this.withIsLocalImage(this.recipeForm.value);
-      newRecipe.cuisineType = ['other'];
+      const newRecipe = this.withAllFields(this.recipeForm.value);
+      // newRecipe.cuisineType = ['other'];
       this.recipeService.addRecipe(newRecipe);
     }
     this.dataStorageService.storeRecipes();
@@ -104,9 +112,33 @@ export class RecipeEditComponent implements OnInit {
     }
   }
 
-  private withIsLocalImage(recipe) {
+  setCuisineTypes() {
+    Object.values(Cuisine).forEach(c => {
+      this.cuisineTypes[c] = this.recipe.cuisineType.indexOf(c) > -1;
+    });
+  }
+
+  setMealTypes() {
+    Object.values(Meal).forEach(c => {
+      this.mealTypes[c] = this.recipe.mealType.indexOf(c) > -1;
+    });
+  }
+
+  private withAllFields(recipe) {
     const isLocalImage = this.isLocalImage !== undefined ? this.isLocalImage : true;
-    return Object.assign(recipe, { isLocalImage });
+    const cuisineType = [];
+    Object.keys(this.cuisineTypes).forEach(c => {
+      if (this.cuisineTypes[c]) {
+        cuisineType.push(c);
+      }
+    });
+    const mealType = [];
+    Object.keys(this.mealTypes).forEach(c => {
+      if (this.mealTypes[c]) {
+        mealType.push(c);
+      }
+    });
+    return Object.assign(recipe, { isLocalImage, cuisineType, mealType });
   }
 
   private initForm() {
@@ -117,6 +149,7 @@ export class RecipeEditComponent implements OnInit {
 
     if (this.editMode) {
       const recipe = this.recipeService.getRecipe(this.id);
+      this.recipe = recipe;
       recipeName = recipe.name;
       recipeImagePath = recipe.imagePath;
       recipeInstruction = recipe.instruction;
