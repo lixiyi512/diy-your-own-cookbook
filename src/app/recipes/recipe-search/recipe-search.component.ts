@@ -116,7 +116,13 @@ export class RecipeSearchComponent {
       return;
     }
     this.searchResults = this.backupResults.filter(({ recipe }) => {
-      return recipe.cuisineType.some(c => filters[0].values[c]) || recipe.mealType.some(m => filters[1].values[m]);
+      if (this.allPropertiesAreFalse(filters[0].values)) {
+        return recipe.mealType.some(m => filters[1].values[m]);
+      }
+      if (this.allPropertiesAreFalse(filters[1].values)) {
+        return recipe.cuisineType.some(m => filters[0].values[m]);
+      }
+      return recipe.cuisineType.some(c => filters[0].values[c]) && recipe.mealType.some(m => filters[1].values[m]);
     });
   }
 
