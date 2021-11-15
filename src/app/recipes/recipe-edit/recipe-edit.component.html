@@ -41,16 +41,20 @@
               id="imagePath"
               formControlName="imagePath"
               class="form-control"
+              [readonly]="isUploadingImage"
               #imagePath>
           </div>
         </div>
       </div>
       <div class="row my-3">
         <label for="upload-0" class="col-md-12">
+          <div *ngIf="isUploadingImage" class="upload-indicator">
+            <app-loading-spinner></app-loading-spinner>
+          </div>
           <img
             [src]="imagePath.value"
             class="img-fluid"
-            [class.hover]="!isUploadingImage && hovering"
+            [class.hover]="(!isUploadingImage && hovering) || isUploadingImage"
             (mouseenter)="onHover(true)"
             (mouseleave)="onHover(false)"
           />
@@ -113,6 +117,63 @@
                 type="button"
                 class="btn btn-success"
                 (click)="onAddIngredient()">Add Ingredient</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 3rem">
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="dropdown">
+              <button
+                type="button"
+                class="btn btn-outline-success dropdown-toggle"
+                (click)="cuisineTypeDropdownOpen = !cuisineTypeDropdownOpen;"
+              >
+                Cuisine Type <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" [class.show]="cuisineTypeDropdownOpen">
+                <li>
+                  <div
+                    class="form-check"
+                    *ngFor="let item of cuisineTypes | keyvalue"
+                    (click)="cuisineTypes[item.key] = !cuisineTypes[item.key];"
+                  >
+                    <input class="form-check-input" type="checkbox" [checked]="item.value"/>
+                    <label class="form-check-label">
+                      {{ item.key }}
+                    </label>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="dropdown">
+              <button
+                type="button"
+                class="btn btn-outline-success dropdown-toggle"
+                (click)="mealTypeDropdownOpen = !mealTypeDropdownOpen;"
+              >
+                Meal Type <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" [class.show]="mealTypeDropdownOpen">
+                <li>
+                  <div
+                    class="form-check"
+                    *ngFor="let item of mealTypes | keyvalue"
+                    (click)="mealTypes[item.key] != mealTypes[item.key];">
+                    <input class="form-check-input" type="checkbox" [checked]="item.value"/>
+                    <label class="form-check-label">
+                      {{ item.key }}
+                    </label>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

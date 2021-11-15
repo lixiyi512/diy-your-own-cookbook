@@ -34,9 +34,6 @@ export class RecipeSearchComponent {
       this.searchInRecipePool(this.searchInput.split(' '), pool, results);
       this.searchInEdamam(this.searchInput, results);
     }
-    this.searchResults = results;
-    this.backupResults = this.searchResults;
-    this.buildFilters(results);
   }
 
   onKeyUp(e) {
@@ -66,6 +63,9 @@ export class RecipeSearchComponent {
   searchInEdamam(input, results) {
     this.edamamService.searchRecipeInEdamamAPI(input).subscribe((res) => {
       results.push(...res.map(r => this.convertToRecipeAttachedTerm(r)));
+      this.searchResults = results;
+      this.backupResults = this.searchResults;
+      this.buildFilters(results);
     })
   }
 
@@ -101,8 +101,8 @@ export class RecipeSearchComponent {
         },
       ];
       recipes.forEach(({ recipe }) => {
-        recipe.cuisineType.forEach(c => this.addElementTo(c, res[0].values));
-        recipe?.mealType.forEach(m => this.addElementTo(m, res[1].values));
+        recipe.cuisineType?.forEach(c => this.addElementTo(c, res[0].values));
+        recipe?.mealType?.forEach(m => this.addElementTo(m, res[1].values));
       });
       this.filters = res;
     } else {

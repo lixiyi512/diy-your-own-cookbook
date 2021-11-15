@@ -91,8 +91,8 @@ export class RecipeService {
   addMissingFields(recipes): Recipe[] {
     return recipes.map((recipe) => ({
       ...recipe,
-      cuisineType: recipes.cuisineType?.length ? recipes.cuisineType : ['others'],
-      mealType: recipes.mealType?.length ? recipes.mealType : ['others'],
+      cuisineType: recipe.cuisineType?.length ? recipe.cuisineType : ['others'],
+      mealType: recipe.mealType?.length ? recipe.mealType : ['others'],
     }));
   }
 }
