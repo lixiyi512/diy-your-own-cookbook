@@ -12,7 +12,7 @@ const ACCESS_POINT = `https://${EDAMAM_DOMAIN}/api/recipes/v2`;
 const APP_ID = 'fd59a4e5';
 const APP_KEY = '291713e5ce66880ebae0e0e60c58fabb';
 
-const useMock = true;
+const useMock = false;
 
 @Injectable({ providedIn: 'root' })
 export class EdamamService {
@@ -65,6 +65,7 @@ export class EdamamService {
   private getMeals(mealTypeFromApi): Meal[] {
     const ret: Meal[] = [];
     mealTypeFromApi.forEach((mealFromApi) => {
+      // @ts-ignore
       ret.push(...mealFromApi.split('/'));
     });
     return ret;
